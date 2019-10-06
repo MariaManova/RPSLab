@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form id="form">
+                <p:messages autoUpdate="true"/>
+                        <h:form id="clientedit">
+                Fio:<br/><p:inputText id="fio" value="#{Session.client.fio}">
+                    <f:validateRegex pattern="([а-я А-Я]+)"/>
+                </p:inputText><br/><br/>
+                <p:message for="fio"/>
+                Phone:<br/><p:inputText id="phone" value="#{Session.client.phone}">
+                    
+                </p:inputText><br/><br/>
+                Address:<br/><p:inputText id="adress" value="#{Session.client.address}">
+                </p:inputText><br/><br/>
+                B-date:<br/><p:calendar id="button"  value="#{Session.client.bdate}" pattern="yyyy-MM-dd" showOn="button" >
+                <br/><br/>
+                <f:convertDateTime pattern="dd.mm.YYYY"/>
+                </p:calendar>
+                <p:commandButton id="submit" value="Оk" action="#{Request.edit()}"/> 
+                <br/><br/>
+                <p:commandButton id="submit1" value="Назад" action="edit" />
+            </h:form>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>
+

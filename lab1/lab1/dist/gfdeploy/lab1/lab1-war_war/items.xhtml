@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Items1</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form>
+                <p:layout fullPage="true">
+
+                    <p:layoutUnit position="center">
+                        <p:dataTable var="cl" value="#{itemsBean.il}" sortMode="multiple"  rowKey="#{cl.getId()}" >
+                            <f:facet name="header">
+                                          Число посетителей: <h:outputText value="#{itemsBean.visited}"   /> 
+                                        </f:facet>
+                            
+                                <p:column headerText="Id" sortBy="#{cl.id}">
+                                        <h:outputText value="#{cl.id}"   />
+                                    </p:column>
+                             
+                                <p:column headerText="FIO" sortBy="#{cl.name}">
+                                        <h:outputText value="#{cl.name}" />
+                                    </p:column>
+                             
+                                <p:column headerText="Phone" sortBy="#{cl.price}">
+                                        <h:outputText value="#{cl.price}" />
+                                    </p:column>
+                             
+                            <p:column >
+                                         <h:commandButton id="sub2" action="#{myCart.addltem(cl)}" value="Добавить в корзину"/>
+                                    </p:column>
+                            <f:facet name="footer">
+                                            
+                                        </f:facet>
+                        </p:dataTable>
+                        Сумма заказа: <h:outputText value="#{myCart.totalPrice}" />
+                        <h:commandButton id="sub3" action="#{myCart.getOrder()}" value="Оформить заказ"/>
+
+                        <h:commandButton id="sub4" action="#{myCart.removeAll()}" value="Очистить корзину"/>
+                        <p>Всего заказов оформлено: <h:outputText value="#{itemsBean.orderCount}"/></p>
+
+                        
+                    </p:layoutUnit>
+
+                </p:layout>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>
+
